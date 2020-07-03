@@ -20,25 +20,27 @@ async function createTables() {
       id SERIAL PRIMARY KEY,
       name VARCHAR(255) UNIQUE NOT NULL
     );
-    
-    CREATE TABLE products(
-      id SERIAL PRIMARY KEY,
-      name VARCHAR(255) UNIQUE NOT NULL,
-      price DECIMAL NOT NULL,
-      description VARCHAR(255) NOT NULL,
-      "catName" VARCHAR(255) REFERENCES categories(name) NOT NULL,
-      quant INTEGER NOT NULL
-    );
 
     CREATE TABLE users(
       id SERIAL PRIMARY KEY,
       username varchar(255) UNIQUE NOT NULL,
       password varchar(255) NOT NULL,
       name VARCHAR(255) NOT NULL,
-      purchase INTEGER REFERENCES products(id),
       active BOOLEAN DEFAULT false
     ); 
 
+     CREATE TABLE products(
+      id SERIAL PRIMARY KEY,
+      name VARCHAR(255) UNIQUE NOT NULL,
+      price DECIMAL NOT NULL,
+      description VARCHAR(255) NOT NULL,
+      "catName" VARCHAR(255) REFERENCES categories(name) NOT NULL,
+      quant INTEGER NOT NULL,
+      "authorId" INTEGER REFERENCES users(id) NOT NULL
+    );
+
+   
+   
     `);
   } catch (error) {
     console.error("There's a problem in making the tables...");
