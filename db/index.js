@@ -22,20 +22,20 @@ async function createProduct({
   name,
   price,
   description,
-  catName,
-  quant,
-  authorId,
+  catId,
+  inventory,
+  photo
 }) {
   try {
     const {
       rows: [product],
     } = await client.query(
-      `INSERT INTO products(name, price, description, "catName", quant, "authorId")
+      `INSERT INTO products(name, price, description, "catId", inventory, "photo")
       VALUES($1, $2, $3, $4, $5, $6)
       ON CONFLICT (name) DO NOTHING
       RETURNING *;
       `,
-      [name, price, description, catName, 0, authorId]
+      [name, price, description, catId, inventory, photo]
     );
     return product;
   } catch (error) {
