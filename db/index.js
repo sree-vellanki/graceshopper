@@ -18,17 +18,24 @@ async function getAllProducts() {
     throw error;
   }
 }
-async function createProduct({ name, price, description, catName, quant }) {
+async function createProduct({
+  name,
+  price,
+  description,
+  catName,
+  quant,
+  authorId,
+}) {
   try {
     const {
       rows: [product],
     } = await client.query(
-      `INSERT INTO products(name, price, description, "catName", quant)
-      VALUES($1, $2, $3, $4, $5)
+      `INSERT INTO products(name, price, description, "catName", quant, "authorId")
+      VALUES($1, $2, $3, $4, $5, $6)
       ON CONFLICT (name) DO NOTHING
       RETURNING *;
       `,
-      [name, price, description, catName, 0]
+      [name, price, description, catName, 0, authorId]
     );
     return product;
   } catch (error) {
@@ -97,6 +104,44 @@ async function createUser({ username, password, name }) {
   }
 }
 
+async function getUserById(userId) {
+  try {
+    const {
+      rows: [user],
+    } = await client.query(`
+      SELECT id, username, name, active
+      FROM users
+      WHERE id=${userId}
+    `);
+    if (!user) {
+      return null;
+    }
+    // user.posts = await getPostsByUser(userId);
+    return user;
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function getUserByUsername(username) {
+  try {
+    const {
+      rows: [user],
+    } = await client.query(
+      `
+      SELECT *
+      FROM users
+      WHERE username=$1
+    `,
+      [username]
+    );
+
+    return user;
+  } catch (error) {
+    throw error;
+  }
+}
+
 // export
 module.exports = {
   client,
@@ -106,6 +151,6 @@ module.exports = {
   getAllCategories,
   getAllUsers,
   createUser,
-
-  // db methods
+  getUserById,
+  getUserByUsername,
 };
