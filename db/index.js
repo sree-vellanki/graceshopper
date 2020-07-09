@@ -6,6 +6,8 @@ const client = new Client(DB_URL);
 
 // database methods
 
+//Products related functions
+
 async function getAllProducts() {
   try {
     const { rows } = await client.query(
@@ -24,7 +26,7 @@ async function createProduct({
   description,
   catId,
   inventory,
-  photo
+  photo,
 }) {
   try {
     const {
@@ -42,6 +44,30 @@ async function createProduct({
     throw error;
   }
 }
+
+//NEED HELP!!!!!!!!
+// async function getProductsByCategory(category) {
+//   try {
+//     const { rows: productIds } = await client.query(
+//       `
+//       SELECT products.id
+//       FROM products
+//       JOIN cat_product ON products.id=cat_product."productId"
+//       JOIN categories ON categories.id=cat_product."catId"
+//       WHERE categories.name=$1;
+//     `,
+//       [category]
+//     );
+
+//     return await Promise.all(
+//       productIds.map((product) => getProductById(products.id))
+//     );
+//   } catch (error) {
+//     throw error;
+//   }
+// }
+
+//Categories related functions
 
 async function getAllCategories() {
   try {
@@ -73,6 +99,8 @@ async function createCategories({ name }) {
     throw error;
   }
 }
+
+//User related functions
 
 async function getAllUsers() {
   try {
@@ -142,6 +170,54 @@ async function getUserByUsername(username) {
   }
 }
 
+async function getUserbyName(name) {
+  try {
+    const {
+      rows: [user],
+    } = await client.query(
+      `
+      SELECT id, username, name, active
+      FROM users
+      WHERE name=$1
+      `,
+      [name]
+    );
+    return user;
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function updateUser(id, fields = {}) {
+  // build the set string
+  const setString = Object.keys(fields)
+    .map((key, index) => `"${key}"=$${index + 1}`)
+    .join(", ");
+
+  // return early if this is called without fields
+  if (setString.length === 0) {
+    return;
+  }
+
+  try {
+    const {
+      rows: [user],
+    } = await client.query(
+      `
+      UPDATE users
+      SET ${setString}
+      WHERE id=${id}
+      RETURNING *;
+    `,
+      Object.values(fields)
+    );
+
+    return user;
+  } catch (error) {
+    throw error;
+  }
+}
+
 // export
 module.exports = {
   client,
@@ -153,4 +229,7 @@ module.exports = {
   createUser,
   getUserById,
   getUserByUsername,
+  getUserbyName,
+  updateUser,
+  getProductsByCategory,
 };

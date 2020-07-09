@@ -7,6 +7,11 @@ const {
   getAllCategories,
   getAllUsers,
   createUser,
+  getUserById,
+  getUserByUsername,
+  getUserbyName,
+  updateUser,
+  getProductsByCategory,
   // other db methods
 } = require("./index");
 
@@ -58,6 +63,13 @@ async function createTables() {
       id SERIAL PRIMARY KEY,
       "cartId" INTEGER REFERENCES cart(id)
     );
+
+    CREATE TABLE cat_product(
+      "productId" INTEGER REFERENCES products(id),
+      "catId" INTEGER REFERENCES categories(id),
+      UNIQUE ("productId", "catId") 
+    );
+
    
     `);
   } catch (error) {
@@ -76,7 +88,8 @@ async function createInitialProducts() {
       description: "A red hat",
       catId: "1",
       inventory: 5,
-      photo: "https://cdn.pixabay.com/photo/2012/04/10/22/46/red-hat-26734_960_720.png"
+      photo:
+        "https://cdn.pixabay.com/photo/2012/04/10/22/46/red-hat-26734_960_720.png",
     });
 
     const blueKeychain = await createProduct({
@@ -85,7 +98,8 @@ async function createInitialProducts() {
       description: "A blue keychain",
       catId: "2",
       inventory: "50",
-      photo: "https://www.pantone.com/images/products/pantone-keychain-color-of-the-year-2020-classic-blue-19-4052.jpg"
+      photo:
+        "https://www.pantone.com/images/products/pantone-keychain-color-of-the-year-2020-classic-blue-19-4052.jpg",
     });
 
     console.log("Done creating products");
@@ -159,6 +173,7 @@ async function dropTables() {
     console.log("Dropping tables");
 
     await client.query(`
+    DROP TABLE IF EXISTS cat_product CASCADE;
     DROP TABLE IF EXISTS users CASCADE;
     DROP TABLE IF EXISTS products CASCADE;
     DROP TABLE IF EXISTS categories CASCADE;
@@ -180,9 +195,13 @@ async function testDB() {
 
     const users = await getAllUsers();
 
+    const testingCat = await getProductsByCategory('hats');
+
     console.log("Products: ", products);
     console.log("Categories: ", categories);
     console.log("User: ", users);
+
+    console.log("prod by Cat: ", testingCat);
   } catch (error) {
     console.error("Testing problem");
     throw error;
