@@ -1,18 +1,30 @@
 import React, { useState, useEffect } from "react";
 
+import { getSomething } from "../api";
+
 import "./Search.css";
-import Button from "react-bootstrap/Button";
 
 const Search = () => {
+  const [message, setMessage] = useState("");
   const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState("");
+  const [category, setCategory] = useState("");
 
   function handleSearch(event) {
     setSearch(event.target.value);
   }
 
-  function handleFilter(event) {
-    setFilter(event.target.value);
+  useEffect(() => {
+    getSomething()
+      .then((response) => {
+        setMessage(response.message);
+      })
+      .catch((error) => {
+        setMessage(error.message);
+      });
+  }, []);
+
+  function handleCategory(event) {
+    setCategory(event.target.value);
   }
 
   //   function handleInput(event) {
@@ -22,23 +34,31 @@ const Search = () => {
   return (
     <div className="center-section">
       <div className="search-bar">
-        <p>Enter search terms below</p>
+        <p>Enter search terms below:</p>
 
         <form>
           <input
             className="inputSearch"
             type="text"
             onChange={handleSearch}
-            placeholder="Search..."
+            placeholder="Search for merchandise here..."
             value={search}
             name="search"
           ></input>
-        </form>
-      </div>
+          <button className="searchButton">Search</button>
 
-      <div className="filter-options">
-        <select value={filter} onChange={handleFilter}></select>
-        <option value="categories">Categories</option>
+          <div className="dropdown">
+            <button className="drop-button" onChange={handleCategory}>
+              Categories
+            </button>
+            <div className="dropdown-content">
+              <a href="#">Hats</a>
+              <a href="#">Shoes</a>
+              <a href="#">Tops</a>
+              <a href="#">Keychains</a>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   );

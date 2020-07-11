@@ -46,13 +46,13 @@ apiRouter.use((req, res, next) => {
   next();
 });
 
-const usersRouter = require("./users");
-apiRouter.use("/users", usersRouter);
+// const usersRouter = require("./users");
+// apiRouter.use("/users", usersRouter);
 
-const productsRouter = require("./products");
-apiRouter.use("/products", productsRouter);
+// const productsRouter = require("./products");
+// apiRouter.use("/products", productsRouter);
 
-const categoriesRouter = require("./categories");
-apiRouter.use("/categories", categoriesRouter);
+// const categoriesRouter = require("./categories");
+// apiRouter.use("/categories", categoriesRouter);
 
 module.exports = apiRouter;
