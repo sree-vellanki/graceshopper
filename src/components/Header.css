@@ -1,0 +1,20 @@
+#header {
+  margin-top: 5px;
+}
+
+.title {
+  color: white;
+  text-shadow: 2px 2px #000000;
+  font-size: 50px;
+}
+
+.subtitle {
+  font-size: 30px;
+}
+
+/* mobile friendly */
+@media (max-width: 800px) {
+  #header {
+    margin-top: 3%;
+  }
+}

@@ -1,0 +1,18 @@
+.inputSearch {
+  width: 60%;
+  max-width: 500px;
+}
+
+/* mobile-friendly */
+
+@media (max-width: 800px) {
+  #search-width {
+    width: 70%;
+  }
+}
+
+@media (max-width: 500px) {
+  #search-width {
+    width: 95%;
+  }
+}

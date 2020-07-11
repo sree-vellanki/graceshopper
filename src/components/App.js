@@ -3,43 +3,36 @@ import React, { useState, useEffect } from "react";
 import { getSomething } from "../api";
 
 import "./App.css";
+import Header from "./Header";
+import Search from "./Search";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Switch } from "react-router-dom";
 
 const App = () => {
-  const [message, setMessage] = useState("");
-  const [search, setSearch] = useState("");
+  // const [message, setMessage] = useState("");
+  // const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    getSomething()
-      .then((response) => {
-        setMessage(response.message);
-      })
-      .catch((error) => {
-        setMessage(error.message);
-      });
-  });
+  // useEffect(() => {
+  //   getSomething()
+  //     .then((response) => {
+  //       setMessage(response.message);
+  //     })
+  //     .catch((error) => {
+  //       setMessage(error.message);
+  //     });
+  // });
 
   //   function handleSearch(event) {
   //     setSearch(event.target.value);
   //   }
 
-  //   return (
-  //     <div className="App">
-  //       <h1>Grace Shopper Project...</h1>
+  return (
+    <div className="App">
+      <Header />
 
-  //       <div id="searchBox">
-  //         <form>
-  //           <input
-  //             type="text"
-  //             onChange={handleSearch}
-  //             placeholder="Search here..."
-  //             value={search}
-  //             name="search"
-  //           />
-  //         </form>
-  //       </div>
-  //       <h2>{message}</h2>
-  //     </div>
-  //   );
+      <Search />
+    </div>
+  );
 };
 
 export default App;
