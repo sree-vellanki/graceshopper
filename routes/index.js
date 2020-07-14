@@ -1,14 +1,15 @@
+const express = require("express");
 const apiRouter = require("express").Router();
 
 const jwt = require("jsonwebtoken");
 const { getUserById } = require("../db");
 const { JWT_SECRET } = process.env;
 
-apiRouter.get("/", (req, res, next) => {
-  res.send({
-    message: "API is under construction!",
-  });
-});
+// apiRouter.get("/", (req, res, next) => {
+//   res.send({
+//     message: "API is under construction!",
+//   });
+// });
 
 apiRouter.use(async (req, res, next) => {
   const prefix = "Bearer ";
@@ -54,5 +55,9 @@ apiRouter.use("/products", productsRouter);
 
 const categoriesRouter = require("./categories");
 apiRouter.use("/categories", categoriesRouter);
+
+apiRouter.use((error, rep, res, next) => {
+  res.send(error);
+})
 
 module.exports = apiRouter;
