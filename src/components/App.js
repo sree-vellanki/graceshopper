@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { ProductsList } from "./index";
 import TopNavigation from "./TopNavigation";
+import BottomNavigation from "./BottomNavigation";
 
 const App = () => {
   // const [message, setMessage] = useState('');
@@ -21,6 +22,7 @@ const App = () => {
       <TopNavigation />
       TEST:
       <ProductsList />
+      <BottomNavigation />
     </div>
   );
 };
