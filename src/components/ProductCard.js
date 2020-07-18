@@ -1,20 +1,20 @@
 import React from "react";
+import {Card, Button} from "react-bootstrap";
 
 const ProductCard = ({
     name,
     price,
-    description,
     photo
 }) => {
     return (
-        <div className="item">
-            <img src={`${photo}`} />
-            <div className="item-info">
-                <h3>{name}</h3>
-                <p>{description}</p>
+        <Card className="item">
+            <Card.Img variant="top" src={`${photo}`} />
+            <Card.Body className="item-info">
+                <Card.Title>{name}</Card.Title>
                 <p>{price}</p>
-            </div>
-        </div>
+                <Button>add to cart</Button>
+            </Card.Body>
+        </Card>
     )
 }
 
