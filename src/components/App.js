@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import {
-  ProductsList
-} from './index';
+import { ProductsList } from "./index";
+import TopNavigation from "./TopNavigation";
+import BottomNavigation from "./BottomNavigation";
 
 const App = () => {
   // const [message, setMessage] = useState('');
@@ -19,10 +19,12 @@ const App = () => {
 
   return (
     <div className="App">
+      <TopNavigation />
       TEST:
       <ProductsList />
+      <BottomNavigation />
     </div>
   );
-}
+};
 
 export default App;
