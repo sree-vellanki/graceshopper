@@ -116,7 +116,7 @@ async function createInitialProducts() {
     });
 
     const greenShirt = await createProduct({
-      name: "Green Hat",
+      name: "Green Shirt",
       price: "7.50",
       description: "A green shirt",
       catId: "3",
