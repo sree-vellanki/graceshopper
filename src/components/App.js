@@ -19,10 +19,15 @@ const App = () => {
 
   return (
     <div className="App">
-      <TopNavigation />
-      TEST:
-      <ProductsList />
-      <BottomNavigation />
+      <header>
+        <TopNavigation />
+      </header>
+      <body>
+        <ProductsList />
+      </body>
+      <footer>
+        <BottomNavigation />
+      </footer>
     </div>
   );
 };

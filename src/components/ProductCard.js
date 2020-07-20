@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import {Card, Button, Modal} from "react-bootstrap";
 import Axios from "axios";
 
+import "./ProductCard.css";
+
 const ProductCard = ({
     name,
     price,
@@ -32,7 +34,7 @@ const ProductCard = ({
 
     const DetailsModal = () => {
         return (
-        <Modal size="lg" aria-labelledby="contained-modal-title-vcenter" centered className="details-modal" show={isOpen} onHide={hideModal}>
+        <Modal size="lg" aria-labelledby="contained-modal-title-vcenter" centered show={isOpen} onHide={hideModal} className="details-modal">
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
                     {name}
@@ -54,10 +56,10 @@ const ProductCard = ({
     return (
         <>
             <Card className="item">
-                <Card.Img variant="top" src={`${photo}`} />
+                <Card.Img variant="top" src={`${photo}`} onClick={showModal} />
                 <Card.Body className="item-info">
                     <Card.Title>{name}</Card.Title>
-                    <p>{price}</p>
+                    <p>${price}</p>
                     <Button onClick={showModal}>View more..</Button>
                     <Button>add to cart</Button>
                 </Card.Body>
