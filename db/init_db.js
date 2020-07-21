@@ -76,7 +76,7 @@ async function createInitialProducts() {
       description: "A red hat",
       catId: "1",
       inventory: 5,
-      photo: "https://cdn.pixabay.com/photo/2012/04/10/22/46/red-hat-26734_960_720.png"
+      photo: "https://m.media-amazon.com/images/I/61nUX-qwxHL._SR500,500_.jpg"
     });
 
     const blueKeychain = await createProduct({
@@ -116,7 +116,7 @@ async function createInitialProducts() {
     });
 
     const greenShirt = await createProduct({
-      name: "Green Hat",
+      name: "Green Shirt",
       price: "7.50",
       description: "A green shirt",
       catId: "3",
