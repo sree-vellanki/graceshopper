@@ -1,5 +1,27 @@
+<<<<<<< Updated upstream
 img {
     max-width: 400px;
+=======
+/* 
+PALETTE:
+CFDBD5 - TIMBERWOLF
+E8EDDF - ALABASTER
+F5CB5C - MAISE CRAYOLA
+242423 - EERIE BLACK
+333533 - JET 
+
+    font-family: 'Lexend Zetta', sans-serif;
+*/
+
+body {
+    background-color: #242423;
+    color: #E8EDDF;
+}
+
+img {
+    max-width: 300px;
+    height: 300px;
+>>>>>>> Stashed changes
 }
 
 .items-list {

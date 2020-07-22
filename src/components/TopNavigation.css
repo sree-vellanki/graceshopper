@@ -1,3 +1,25 @@
+<<<<<<< Updated upstream
+=======
+/* 
+PALETTE:
+CFDBD5 - TIMBERWOLF
+E8EDDF - ALABASTER
+F5CB5C - MAISE CRAYOLA
+242423 - EERIE BLACK
+333533 - JET 
+*/
+
+.top-nav {
+  background-color: #333533;
+}
+
+h1 {
+  font-family: 'Lexend Zetta', sans-serif;
+  font-weight: bold;
+  margin: 8px;
+}
+
+>>>>>>> Stashed changes
 ul {
   list-style-type: none;
   margin: 5px;
@@ -24,4 +46,21 @@ li a:hover {
   text-transform: uppercase;
   background-color: black;
   color: white;
+}
+
+.log-reg-modal {
+  color: #333533;
+}
+
+.log-reg-modal Button, .top-nav Button {
+  background-color: #F5CB5C;
+  color: black;
+  border: 1px solid #F5CB5C;
+  box-shadow: none;
+  margin: 2px;
+}
+
+.log-reg-modal Button:hover, .top-nav Button:hover {
+  background-color: #333533;
+  border: 1px solid #E8EDDF;
 }
