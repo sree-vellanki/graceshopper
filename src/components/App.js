@@ -1,28 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import {
-  getSomething
-} from '../api';
+import { ProductsList } from "./index";
+import TopNavigation from "./TopNavigation";
+import BottomNavigation from "./BottomNavigation";
 
 const App = () => {
-  const [message, setMessage] = useState('');
+  // const [message, setMessage] = useState('');
 
-  useEffect(() => {
-    getSomething()
-      .then(response => {
-        setMessage(response.message);
-      })
-      .catch(error => {
-        setMessage(error.message);
-      });
-  });
+  // useEffect(() => {
+  //   getSomething()
+  //     .then(response => {
+  //       setMessage(response.message);
+  //     })
+  //     .catch(error => {
+  //       setMessage(error.message);
+  //     });
+  // });
 
   return (
     <div className="App">
-      <h1>Hello, World!</h1>
-      <h2>{ message }</h2>
+      <header>
+        <TopNavigation />
+      </header>
+      <body>
+        <ProductsList />
+      </body>
+      <footer>
+        <BottomNavigation />
+      </footer>
     </div>
   );
-}
+};
 
 export default App;

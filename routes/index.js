@@ -1,3 +1,6 @@
+require('dotenv').config();
+
+const express = require("express");
 const apiRouter = require("express").Router();
 
 const jwt = require("jsonwebtoken");
@@ -21,7 +24,7 @@ apiRouter.use(async (req, res, next) => {
     const token = auth.slice(prefix.length);
 
     try {
-      const { id } = jwt.verify(token, "JWT_SECRET");
+      const { id } = jwt.verify(token, JWT_SECRET);
 
       if (id) {
         req.user = await getUserById(id);
@@ -54,5 +57,9 @@ apiRouter.use("/products", productsRouter);
 
 const categoriesRouter = require("./categories");
 apiRouter.use("/categories", categoriesRouter);
+
+apiRouter.use((error, rep, res, next) => {
+  res.send(error);
+})
 
 module.exports = apiRouter;
