@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require("express");
 const apiRouter = require("express").Router();
 
@@ -5,11 +7,11 @@ const jwt = require("jsonwebtoken");
 const { getUserById } = require("../db");
 const { JWT_SECRET } = process.env;
 
-// apiRouter.get("/", (req, res, next) => {
-//   res.send({
-//     message: "API is under construction!",
-//   });
-// });
+apiRouter.get("/", (req, res, next) => {
+  res.send({
+    message: "API is under construction!",
+  });
+});
 
 apiRouter.use(async (req, res, next) => {
   const prefix = "Bearer ";
@@ -22,7 +24,7 @@ apiRouter.use(async (req, res, next) => {
     const token = auth.slice(prefix.length);
 
     try {
-      const { id } = jwt.verify(token, "JWT_SECRET");
+      const { id } = jwt.verify(token, JWT_SECRET);
 
       if (id) {
         req.user = await getUserById(id);

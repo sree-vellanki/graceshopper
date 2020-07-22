@@ -1,3 +1,16 @@
+/* 
+PALETTE:
+CFDBD5 - TIMBERWOLF
+E8EDDF - ALABASTER
+F5CB5C - MAISE CRAYOLA
+242423 - EERIE BLACK
+333533 - JET 
+*/
+
+.top-nav {
+  background-color: #333533;
+}
+
 ul {
   list-style-type: none;
   margin: 5px;
