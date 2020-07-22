@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
+import {Button, Modal, Tabs, Tab, Form} from "react-bootstrap";
+import axios from "axios";
 
 import "./TopNavigation.css";
 
 const TopNavigation = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [navigation, setNavigation] = useState("");
-<<<<<<< Updated upstream
-
-  function handleNavigation(event) {
-    setNavigation(event.target.value);
-=======
   const [username, setUsername] = ("");
   const [password, setPassword] = ("");
 
@@ -85,22 +83,13 @@ const TopNavigation = () => {
         </Modal.Body>
       </Modal>
     )
->>>>>>> Stashed changes
   }
 
   return (
     <div className="top-nav">
-      <ul>
-        <li>
-          <a href="cart.asp">Cart</a>
-        </li>
-        <li>
-          <a href="login.asp">Login</a>
-        </li>
-        <li>
-          <a href="register.asp">Register</a>
-        </li>
-      </ul>
+      <h1>Merch Madness</h1>
+          <Button onClick={showModal}>login/register</Button>
+      <LoginRegisterModal show={isOpen} onHide={hideModal} />
     </div>
   );
 };
