@@ -117,6 +117,7 @@ async function getProductById(productId) {
       [productId]
     );
 
+
     return product;
   } catch (error) {
     throw error;
@@ -291,23 +292,6 @@ async function getUserByUsername(username) {
   }
 }
 
-// async function getUserbyName(name) {    //Change to username
-//   try {
-//     const {
-//       rows: [user],
-//     } = await client.query(
-//       `
-//       SELECT id, username, name, active
-//       FROM user
-//       WHERE name=$1
-//       `,
-//       [name]
-//     );
-//     return user;
-//   } catch (error) {
-//     throw error;
-//   }
-// }
 
 async function updateUser(id, fields = {}) {
   // build the set string
