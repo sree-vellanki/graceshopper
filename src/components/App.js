@@ -1,36 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-import { getSomething } from "../api";
-
-import "./App.css";
+import { ProductsList } from "./index";
+import TopNavigation from "./TopNavigation";
 import Header from "./Header";
 import Search from "./Search";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Switch } from "react-router-dom";
+import BottomNavigation from "./BottomNavigation";
 
 const App = () => {
-  // const [message, setMessage] = useState("");
-  // const [search, setSearch] = useState("");
-
-  // useEffect(() => {
-  //   getSomething()
-  //     .then((response) => {
-  //       setMessage(response.message);
-  //     })
-  //     .catch((error) => {
-  //       setMessage(error.message);
-  //     });
-  // });
-
-  //   function handleSearch(event) {
-  //     setSearch(event.target.value);
-  //   }
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
 
   return (
     <div className="App">
+      <TopNavigation />
       <Header />
-
-      <Search />
+      <Search
+        search={search}
+        setSearch={setSearch}
+        category={category}
+        setCategory={setCategory}
+      />
+      TEST:
+      <ProductsList search={search} category={category} />
+      <BottomNavigation />
     </div>
   );
 };

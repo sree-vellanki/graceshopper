@@ -4,33 +4,16 @@ import { getSomething } from "../api";
 
 import "./Search.css";
 
-const Search = () => {
-  const [message, setMessage] = useState("");
-  const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("");
-
+const Search = ({ search, setSearch, category, setCategory }) => {
   function handleSearch(event) {
     setSearch(event.target.value);
   }
-
-  useEffect(() => {
-    getSomething()
-      .then((response) => {
-        setMessage(response.message);
-      })
-      .catch((error) => {
-        setMessage(error.message);
-      });
-  }, []);
 
   function handleCategory(event) {
     setCategory(event.target.value);
   }
 
-  //   function handleInput(event) {
-  //     setInput(event.target.value);
-  //   }
-
+  console.log(category);
   return (
     <div className="center-section">
       <div className="search-bar">
@@ -45,17 +28,24 @@ const Search = () => {
             value={search}
             name="search"
           ></input>
-          <button className="searchButton">Search</button>
 
           <div className="dropdown">
             <button className="drop-button" onChange={handleCategory}>
-              Categories
+              Select a category
             </button>
             <div className="dropdown-content">
-              <a href="#">Hats</a>
-              <a href="#">Shoes</a>
-              <a href="#">Tops</a>
-              <a href="#">Keychains</a>
+              <select
+                id="lang"
+                onChange={(event) => {
+                  setCategory(event.target.value);
+                }}
+                value={category}
+              >
+                <option value="hat">hats</option>
+                <option value="shirt">shirts</option>
+                <option value="shoes">shoes</option>
+                <option value="keychain">keychains</option>
+              </select>
             </div>
           </div>
         </form>

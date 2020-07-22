@@ -24,7 +24,7 @@ async function createProduct({
   description,
   catId,
   inventory,
-  photo
+  photo,
 }) {
   try {
     const {
@@ -38,6 +38,26 @@ async function createProduct({
       [name, price, description, catId, inventory, photo]
     );
     return product;
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function getProductsByCategory(categoryName) {
+  try {
+    const { rows: productIds } = await client.query(
+      `
+      SELECT cat_product."productId"
+      FROM cat_product
+      JOIN categories ON cat_product."categoryId"=categories.id
+      WHERE categories.name=$1;
+    `,
+      [categoryName]
+    );
+    console.log(categoryName);
+    return await Promise.all(
+      productIds.map((product) => getProductById(products.id))
+    );
   } catch (error) {
     throw error;
   }
@@ -153,4 +173,5 @@ module.exports = {
   createUser,
   getUserById,
   getUserByUsername,
+  getProductsByCategory,
 };
