@@ -9,9 +9,10 @@ const {
   createUser,
   getUserById,
   getUserByUsername,
-  getUserbyName,
   updateUser,
   getProductsByCategory,
+  addProductToCategory,
+
   // other db methods
 } = require("./index");
 
@@ -35,41 +36,35 @@ async function createTables() {
       admin BOOLEAN DEFAULT false
     ); 
 
-     CREATE TABLE products(
+     CREATE TABLE product(
       id SERIAL PRIMARY KEY,
       name VARCHAR(255) UNIQUE NOT NULL,
       price DECIMAL NOT NULL,
       description VARCHAR(255) NOT NULL,
-      "catId" INTEGER REFERENCES categories(id) NOT NULL,
+      "categoryId" INTEGER REFERENCES categories(id),
       inventory INTEGER NOT NULL,
       photo VARCHAR(255) NOT NULL
     );
 
     CREATE TABLE reviews(
       id SERIAL PRIMARY KEY,
-      "productId" INTEGER REFERENCES products(id) NOT NULL,
-      "usersId" INTEGER REFERENCES users(id) NOT NULL,
+      "productId" INTEGER REFERENCES product(id) NOT NULL,
+      "userId" INTEGER REFERENCES users(id) NOT NULL,
       report VARCHAR(255) NOT NULL
     );
 
     CREATE TABLE cart(
       id SERIAL PRIMARY KEY,
-      "productId" INTEGER REFERENCES products(id) NOT NULL,
-      quantity INTEGER NOT NULL,
-      total DECIMAL NOT NULL
-    );
-
-    CREATE TABLE purchase(
-      id SERIAL PRIMARY KEY,
-      "cartId" INTEGER REFERENCES cart(id)
+      "productId" INTEGER REFERENCES product(id) NOT NULL,
+      "userId" INTEGER REFERENCES users(id) NOT NULL,
+      quantity INTEGER NOT NULL
     );
 
     CREATE TABLE cat_product(
-      "productId" INTEGER REFERENCES products(id),
-      "catId" INTEGER REFERENCES categories(id),
-      UNIQUE ("productId", "catId") 
+      "productId" INTEGER REFERENCES product(id),
+      "categoryId" INTEGER REFERENCES categories(id),
+      UNIQUE ("productId", "categoryId") 
     );
-
    
     `);
   } catch (error) {
@@ -86,7 +81,7 @@ async function createInitialProducts() {
       name: "Red Hat",
       price: "2.00",
       description: "A red hat",
-      catId: "1",
+      categoryId: "1",
       inventory: 5,
       photo:
         "https://cdn.pixabay.com/photo/2012/04/10/22/46/red-hat-26734_960_720.png",
@@ -96,7 +91,7 @@ async function createInitialProducts() {
       name: "Blue Keychain",
       price: "1.00",
       description: "A blue keychain",
-      catId: "2",
+      categoryId: "2",
       inventory: "50",
       photo:
         "https://www.pantone.com/images/products/pantone-keychain-color-of-the-year-2020-classic-blue-19-4052.jpg",
@@ -112,10 +107,10 @@ async function createInitialCategories() {
   try {
     console.log("Creating initial categories");
 
-    const headware = await createCategories({ name: "hats" });
-    const keychains = await createCategories({ name: "keychains" });
-    const tops = await createCategories({ name: "tops" });
-    const shoes = await createCategories({ name: "shoes" });
+    const headware = await createCategories(["hats"]);
+    const keychains = await createCategories(["keychains"]);
+    const tops = await createCategories(["tops"]);
+    const shoes = await createCategories(["shoes"]);
 
     console.log("Done creating categories");
   } catch (error) {
@@ -174,12 +169,11 @@ async function dropTables() {
 
     await client.query(`
     DROP TABLE IF EXISTS cat_product CASCADE;
+    DROP TABLE IF EXISTS cart CASCADE;
     DROP TABLE IF EXISTS users CASCADE;
-    DROP TABLE IF EXISTS products CASCADE;
+    DROP TABLE IF EXISTS product CASCADE;
     DROP TABLE IF EXISTS categories CASCADE;
     DROP TABLE IF EXISTS reviews CASCADE;
-    DROP TABLE IF EXISTS cart CASCADE;
-    DROP TABLE IF EXISTS purchase CASCADE;
     `);
   } catch (error) {
     console.error("Error dropping tables");
@@ -195,13 +189,13 @@ async function testDB() {
 
     const users = await getAllUsers();
 
-    const testingCat = await getProductsByCategory('hats');
+    const testingCat = await getProductsByCategory(["hats"]);
 
-    console.log("Products: ", products);
-    console.log("Categories: ", categories);
-    console.log("User: ", users);
+    console.log("testing Cat_product");
 
-    console.log("prod by Cat: ", testingCat);
+    const cat_prod = await addProductToCategory(1, ["keychain", "tops"]); //Restructure data
+
+    console.log(cat_prod);
   } catch (error) {
     console.error("Testing problem");
     throw error;
