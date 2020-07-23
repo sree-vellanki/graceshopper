@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import {Card, Button, Modal} from "react-bootstrap";
 import Axios from "axios";
 
+import "./ProductCard.css"
+
 const ProductCard = ({
     name,
     price,
@@ -51,10 +53,22 @@ const ProductCard = ({
       )
     }
 
+    // const AddedProduct = () => {
+    //     return (
+    //         <tr>
+    //             <td>{name}</td>
+    //             <td>{i++}</td>
+    //             <td>{price}</td>
+    //         </tr>
+    //     )
+    // }
+
+    // onClick={AddedProduct.appendTo({CartModal})}
+
     return (
         <>
             <Card className="item">
-                <Card.Img variant="top" src={`${photo}`} />
+                <Card.Img variant="top" src={`${photo}`} className="item-image" />
                 <Card.Body className="item-info">
                     <Card.Title>{name}</Card.Title>
                     <p>{price}</p>
