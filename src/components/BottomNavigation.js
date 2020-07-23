@@ -11,7 +11,7 @@ const BottomNavigation = () => {
 
   return (
     <div className="bottom-nav">
-      <a href="#contact" class="active">
+      <a href="#contact" className="active">
         Contact
       </a>
       <a href="#news">News</a>

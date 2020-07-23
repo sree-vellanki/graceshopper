@@ -102,7 +102,8 @@ async function createInitialProducts() {
       description: "A black shirt",
       catId: "3",
       inventory: "20",
-      photo: "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/408964/item/goods_69_408964.jpg?width=2000"
+      photo:
+        "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/408964/item/goods_69_408964.jpg?width=2000",
     });
 
     const purpleHat = await createProduct({
@@ -111,7 +112,8 @@ async function createInitialProducts() {
       description: "A purple hat",
       catId: "1",
       inventory: "10",
-      photo: "https://cdn.shopify.com/s/files/1/0055/9254/7443/products/0acf553b-d7c2-44fc-bf13-b026f86fffb6.5d133a7e459b95026a8f3a575593c11d_1024x1024.jpeg?v=1584657753"
+      photo:
+        "https://cdn.shopify.com/s/files/1/0055/9254/7443/products/0acf553b-d7c2-44fc-bf13-b026f86fffb6.5d133a7e459b95026a8f3a575593c11d_1024x1024.jpeg?v=1584657753",
     });
 
     const orangeShoes = await createProduct({
@@ -120,7 +122,8 @@ async function createInitialProducts() {
       description: "A pair of orange shoes",
       catId: "4",
       inventory: "5",
-      photo: "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy/4d48822742e041dfbd42aafa00a85217_9366/Dame_6_Shoes_Orange_FU6808_01_standard.jpg"
+      photo:
+        "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy/4d48822742e041dfbd42aafa00a85217_9366/Dame_6_Shoes_Orange_FU6808_01_standard.jpg",
     });
 
     const greenShirt = await createProduct({
@@ -129,7 +132,8 @@ async function createInitialProducts() {
       description: "A green shirt",
       catId: "3",
       inventory: "100",
-      photo: "https://cdn.childrensalon.com/media/catalog/product/cache/0/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/g/u/gucci-green-cotton-logo-t-shirt-307519-51083c57c5ee5de46aeb01bf3e46e92a27a8e9e6.jpg"
+      photo:
+        "https://cdn.childrensalon.com/media/catalog/product/cache/0/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/g/u/gucci-green-cotton-logo-t-shirt-307519-51083c57c5ee5de46aeb01bf3e46e92a27a8e9e6.jpg",
     });
 
     console.log("Done creating products");
@@ -179,7 +183,7 @@ async function createInitialUsers() {
       username: "adminTest",
       password: "ihavethecon",
       name: "A. D. Min",
-      admin: true
+      admin: true,
     });
 
     console.log("Done creating Users");

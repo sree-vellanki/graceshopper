@@ -1,29 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { ProductsList } from "./index";
 import TopNavigation from "./TopNavigation";
+import Header from "./Header";
+import Search from "./Search";
 import BottomNavigation from "./BottomNavigation";
 
 const App = () => {
-  // const [message, setMessage] = useState('');
-
-  // useEffect(() => {
-  //   getSomething()
-  //     .then(response => {
-  //       setMessage(response.message);
-  //     })
-  //     .catch(error => {
-  //       setMessage(error.message);
-  //     });
-  // });
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
 
   return (
     <div className="App">
-      <header>
+       <header>
         <TopNavigation />
+         <Search
+            search={search}
+            setSearch={setSearch}
+            category={category}
+            setCategory={setCategory}
+        />
       </header>
+     
+      TEST:
       <body>
-        <ProductsList />
+        <ProductsList search={search} category={category} />
       </body>
       <footer>
         <BottomNavigation />
