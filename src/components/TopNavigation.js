@@ -4,6 +4,8 @@ import axios from "axios";
 
 import "./TopNavigation.css";
 
+import CartButton from "./Cart"
+
 const TopNavigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [navigation, setNavigation] = useState("");
@@ -89,7 +91,8 @@ const TopNavigation = () => {
     <div className="top-nav">
       <h1>Merch Madness</h1>
           <Button onClick={showModal}>login/register</Button>
-      <LoginRegisterModal show={isOpen} onHide={hideModal} />
+          <LoginRegisterModal show={isOpen} onHide={hideModal} />
+          <CartButton />
     </div>
   );
 };

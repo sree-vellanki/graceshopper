@@ -14,8 +14,18 @@ const CartButton = () => {
     const CartModal = () => {
         return (
             <Modal size="sm" aria-labelledby="contained-modal-title-vcenter" centered show={isOpen} onHide={hideModal} className="log-reg-modal">
-                <Table>
-                    
+                <Table striped bordered hover variant="dark">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
                 </Table>
             </Modal>
         )
@@ -23,7 +33,10 @@ const CartButton = () => {
 
     return (
         <div>
-            <Button>cart</Button>
+            <Button onClick={showModal}>cart</Button>
+            <CartModal show={isOpen} onHide={hideModal} />
         </div>
     )
 }
+
+export default CartButton;
