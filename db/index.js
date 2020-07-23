@@ -125,7 +125,7 @@ async function getProductById(productId) {
 }
 
 
-/*
+
 async function getProductsByCategory(categoryName) {
   try {
     const { rows: productIds } = await client.query(
@@ -145,7 +145,7 @@ async function getProductsByCategory(categoryName) {
     throw error;
   }
 }
-*/
+
 
 async function updateProduct(id, fields = {}) {
   const { categories } = fields;
@@ -454,7 +454,7 @@ module.exports = {
   createUser,
   getUserById,
   getUserByUsername,
-  /* getProductsByCategory, */
+  getProductsByCategory, 
   updateUser,
   getProductsByCategory,
   updateProduct,
