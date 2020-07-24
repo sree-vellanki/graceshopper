@@ -12,16 +12,33 @@ const CartButton = () => {
     };
 
     const CartModal = () => {
-        let LocalCart = JSON.parse(localStorage.getItem("localCart"));
+        let LocalCart = JSON.parse(localStorage.getItem("localCart")) || [];
+
+        console.log(LocalCart)
+
+        const test = (quantity, product) => {
+            if (quantity < 1) {
+                LocalCart.delete(product)
+            } 
+        }
 
         const LineItem = ({name, price}) => {
+            const [quant, setQuant] = useState(1);
+
             return (
                 <tr>
                     <td>{name}</td>
-                    <td>1</td>
+                    <td>{quant}
+                    <button onClick={() => setQuant(quant - 1)}>-</button>
+                    <button onClick={() => setQuant(quant + 1)}>+</button></td>
                     <td>{price}</td>
+                    <td>{(quant * price).toFixed(2)}</td>
                 </tr>
             )
+        }
+
+        const CheckoutAction = () => {
+            alert("Package delivered!")
         }
 
         return (
@@ -32,17 +49,22 @@ const CartButton = () => {
                             <th>Product</th>
                             <th>Quantity</th>
                             <th>Price</th>
+                            <th>Total Item Price</th>
                         </tr>
                     </thead>
                     <tbody>
                         {LocalCart.map((product) => (
                             <LineItem key={product.id} {...product} />
                         ))}
+                        {/* <tr>
+                            <td colSpan="3">Total Price:</td>
+                        <td>yeehaw</td>
+                        </tr> */}
                     </tbody>
                 </Table>
                 <Modal.Footer>
                     <Button onClick={hideModal}>Cancel</Button>
-                    <Button>Checkout</Button>
+                    <Button onClick={CheckoutAction}>Checkout</Button>
                 </Modal.Footer>
             </Modal>
         )
