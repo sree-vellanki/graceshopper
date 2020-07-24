@@ -124,6 +124,29 @@ async function getProductById(productId) {
   }
 }
 
+
+
+async function getProductsByCategory(categoryName) {
+  try {
+    const { rows: productIds } = await client.query(
+      `
+      SELECT cat_product."productId"
+      FROM cat_product
+      JOIN categories ON cat_product."categoryId"=categories.id
+      WHERE categories.name=$1;
+    `,
+      [categoryName]
+    );
+    console.log(categoryName);
+    return await Promise.all(
+      productIds.map((product) => getProductById(products.id))
+    ); 
+  } catch (error) {
+    throw error;
+  }
+}
+
+
 async function updateProduct(id, fields = {}) {
   const { categories } = fields;
   delete fields.categories;
@@ -171,6 +194,7 @@ async function updateProduct(id, fields = {}) {
     throw error;
   }
 }
+
 
 //Categories related functions
 
@@ -479,6 +503,7 @@ module.exports = {
   createUser,
   getUserById,
   getUserByUsername,
+  getProductsByCategory, 
   updateUser,
   getProductsByCategory,
   updateProduct,

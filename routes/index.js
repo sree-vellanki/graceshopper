@@ -60,6 +60,6 @@ apiRouter.use("/categories", categoriesRouter);
 
 apiRouter.use((error, rep, res, next) => {
   res.send(error);
-})
+});
 
 module.exports = apiRouter;
