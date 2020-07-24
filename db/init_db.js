@@ -89,21 +89,21 @@ async function createInitialProducts() {
       photo: "https://m.media-amazon.com/images/I/61nUX-qwxHL._SR500,500_.jpg",
     });
 
-    const blueKeychain = await createProduct({
+    const redHat = await createProduct({
       name: "Another Red Hat",
       price: "1.00",
       description: "Buy this and the Red Hat is half off",
-      categoryId: "2",
+      categoryId: "1",
       inventory: "50",
       photo:
         "https://images-na.ssl-images-amazon.com/images/I/612lct2Rr2L._AC_UX385_.jpg",
     });
 
-    const blackShirt = await createProduct({
+    const nokeShirt = await createProduct({
       name: "Grey Noke Shirt",
       price: "15.00",
       description: "Just do it? How about no.",
-      catId: "3",
+      categoryId: "3",
       inventory: "20",
       photo: "https://i.ebayimg.com/images/g/Lm0AAOSwnH1WYSFJ/s-l1600.jpg",
     });
@@ -112,32 +112,137 @@ async function createInitialProducts() {
       name: "Purple Hat",
       price: "10.00",
       description: "A purple hat",
-      catId: "1",
+      categoryId: "1",
       inventory: "10",
       photo:
         "https://cdn.shopify.com/s/files/1/0055/9254/7443/products/0acf553b-d7c2-44fc-bf13-b026f86fffb6.5d133a7e459b95026a8f3a575593c11d_1024x1024.jpeg?v=1584657753",
     });
 
-    const orangeShoes = await createProduct({
+    const duckPoster = await createProduct({
       name: "Anatidaephobia Poster",
       price: "40.00",
       description: "Maybe there's one behind you....right now",
-      catId: "4",
+      categoryId: "6",
       inventory: "5",
       photo:
         "https://rlv.zcache.com/duck_shiba_inu_dog_anatidaephobia_photo_funny_doge_poster-rc9f444cac8f94149aa82137ca6a68243_wva_8byvr_704.jpg",
     });
 
-    const greenShirt = await createProduct({
+    const wumbology = await createProduct({
       name: "Wumbology Bag",
       price: "7.50",
       description: "You know, Wumbology",
-      catId: "3",
+      categoryId: "5",
       inventory: "100",
       photo:
         "https://images-na.ssl-images-amazon.com/images/I/6136FUTubnL._AC_SL1200_.jpg",
     });
 
+    const blueKeychain = await createProduct({
+      name: "Blue Keychain",
+      price: "1.00",
+      description: "A blue keychain",
+      categoryId: "2",
+      inventory: "50",
+      photo:
+        "https://www.pantone.com/images/products/pantone-keychain-color-of-the-year-2020-classic-blue-19-4052.jpg",
+    });
+    const blackShirt = await createProduct({
+      name: "Black Shirt",
+      price: "15.00",
+      description: "A black shirt",
+      categoryId: "3",
+      inventory: "20",
+      photo:
+        "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/408964/item/goods_69_408964.jpg?width=2000",
+    });
+
+    const orangeShoes = await createProduct({
+      name: "Orange Shoes",
+      price: "40.00",
+      description: "A pair of orange shoes",
+      categoryId: "4",
+      inventory: "5",
+      photo:
+        "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy/4d48822742e041dfbd42aafa00a85217_9366/Dame_6_Shoes_Orange_FU6808_01_standard.jpg",
+    });
+    const greenShirt = await createProduct({
+      name: "Green Shirt",
+      price: "7.50",
+      description: "A green shirt",
+      categoryId: "3",
+      inventory: "100",
+      photo:
+        "https://cdn.childrensalon.com/media/catalog/product/cache/0/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/g/u/gucci-green-cotton-logo-t-shirt-307519-51083c57c5ee5de46aeb01bf3e46e92a27a8e9e6.jpg",
+    });
+
+    const squidHoodie = await createProduct({
+      name: "Squidward Hoodie",
+      price: "20.00",
+      description: "Let out your inner artisitc Squidward",
+      categoryId: "3",
+      inventory: "75",
+      photo:
+        "https://images-na.ssl-images-amazon.com/images/I/71AxmEfdPcL._AC_UL1500_.jpg",
+    });
+
+    const iroh = await createProduct({
+      name: "Uncle Iroh Poster",
+      price: "12.50",
+      description: "A calming poster of the calmest person",
+      categoryId: "6",
+      inventory: "100",
+      photo:
+        "https://ih1.redbubble.net/image.626937052.4808/poster,504x498,f8f8f8-pad,600x600,f8f8f8.jpg",
+    });
+
+    const batman = await createProduct({
+      name: "Batman Keychain",
+      price: "10.00",
+      description: "Na na na na na na na na na na na na na.....BATMAN!!!",
+      categoryId: "2",
+      inventory: "75",
+      photo: "https://i.ebayimg.com/images/g/qvMAAOSwqYBWpJMN/s-l640.jpg",
+    });
+
+    const whiteShoes = await createProduct({
+      name: "White Shoes",
+      price: "45.00",
+      description: "A pair of white shoes",
+      categoryId: "4",
+      inventory: "15",
+      photo:
+        "https://www.famousfootwear.com/productimages/shoes_ia95364.jpg?trim.threshold=105&width=630&height=480&paddingWidth=60",
+    });
+
+    const patrick = await createProduct({
+      name: "Patrick Bag",
+      price: "7.50",
+      description: "Yeah, mine too Patrick",
+      categoryId: "5",
+      inventory: "100",
+      photo:
+        "https://ih1.redbubble.net/image.679194748.4858/drawstring_bag,x600-pad,600x600,f8f8f8.u3.jpg",
+    });
+
+    console.log(
+      "These are the categories: ",
+      hat,
+      redHat,
+      nokeShirt,
+      purpleHat,
+      duckPoster,
+      wumbology,
+      blueKeychain,
+      blackShirt,
+      orangeShoes,
+      greenShirt,
+      squidHoodie,
+      iroh,
+      batman,
+      whiteShoes,
+      patrick
+    );
     console.log("Done creating products");
   } catch (error) {
     throw error;
@@ -148,10 +253,20 @@ async function createInitialCategories() {
   try {
     console.log("Creating initial categories");
 
-    const headware = await createCategories(["hats"]);
-    const keychains = await createCategories(["keychains"]);
-    const tops = await createCategories(["tops"]);
-    const shoes = await createCategories(["shoes"]);
+    const cats = await createCategories([
+      "hats",
+      "keychains",
+      "tops",
+      "shoes",
+      "bags",
+      "posters",
+      "hoodies",
+    ]);
+    // const keychains = await createCategories(["keychains"]);
+    // const tops = await createCategories(["tops"]);
+    // const shoes = await createCategories(["shoes"]);
+
+    console.log(cats);
 
     console.log("Done creating categories");
   } catch (error) {

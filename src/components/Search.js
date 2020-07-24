@@ -13,7 +13,7 @@ const Search = ({ search, setSearch, category, setCategory }) => {
     setCategory(event.target.value);
   }
 
-  console.log(category);
+  console.log("These are the categories: ", category);
   return (
     <div className="center-section">
       <div className="search-bar">
@@ -28,26 +28,21 @@ const Search = ({ search, setSearch, category, setCategory }) => {
             value={search}
             name="search"
           ></input>
-
-          <div className="dropdown">
-            <button className="drop-button" onChange={handleCategory}>
-              Select a category
-            </button>
-            <div className="dropdown-content">
-              <select
-                id="lang"
-                onChange={(event) => {
-                  setCategory(event.target.value);
-                }}
-                value={category}
-              >
-                <option value="hat">hats</option>
-                <option value="shirt">shirts</option>
-                <option value="shoes">shoes</option>
-                <option value="keychain">keychains</option>
-              </select>
-            </div>
-          </div>
+          <select
+            id="lang"
+            onChange={(event) => {
+              handleCategory(event);
+              setCategory(event.target.value);
+            }}
+            value={category}
+          >
+            <option value="hat">hats</option>
+            <option value="shirt">shirts</option>
+            <option value="shoes">shoes</option>
+            <option value="keychain">keychains</option>
+            <option value="hoodie">hoodies</option>
+            <option value="poster">posters</option>
+          </select>
         </form>
       </div>
     </div>
@@ -55,3 +50,11 @@ const Search = ({ search, setSearch, category, setCategory }) => {
 };
 
 export default Search;
+
+/*
+  <div className="dropdown">
+            <button className="drop-button" onChange={handleCategory}>
+              Select a category
+            </button>
+            <div className="dropdown-content">
+            */
