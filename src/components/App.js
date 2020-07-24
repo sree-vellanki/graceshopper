@@ -22,9 +22,9 @@ const App = () => {
       <header>
         <TopNavigation />
       </header>
-      <body>
+      <main>
         <ProductsList />
-      </body>
+      </main>
       <footer>
         <BottomNavigation />
       </footer>

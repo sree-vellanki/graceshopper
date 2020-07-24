@@ -12,6 +12,9 @@ const {
   updateUser,
   getProductsByCategory,
   addProductToCategory,
+  getReviewsByProduct,
+  getAllReviews,
+  createReview,
 
   // other db methods
 } = require("./index");
@@ -49,7 +52,7 @@ async function createTables() {
     CREATE TABLE reviews(
       id SERIAL PRIMARY KEY,
       "productId" INTEGER REFERENCES product(id) NOT NULL,
-      "userId" INTEGER REFERENCES users(id) NOT NULL,
+      "usersId" INTEGER REFERENCES users(id) NOT NULL,
       report VARCHAR(255) NOT NULL
     );
 
@@ -83,26 +86,26 @@ async function createInitialProducts() {
       description: "A red hat",
       categoryId: "1",
       inventory: 5,
-      photo: "https://m.media-amazon.com/images/I/61nUX-qwxHL._SR500,500_.jpg"
+      photo: "https://m.media-amazon.com/images/I/61nUX-qwxHL._SR500,500_.jpg",
     });
 
     const blueKeychain = await createProduct({
-      name: "Blue Keychain",
+      name: "Another Red Hat",
       price: "1.00",
-      description: "A blue keychain",
+      description: "Buy this and the Red Hat is half off",
       categoryId: "2",
       inventory: "50",
       photo:
-        "https://www.pantone.com/images/products/pantone-keychain-color-of-the-year-2020-classic-blue-19-4052.jpg",
+        "https://images-na.ssl-images-amazon.com/images/I/612lct2Rr2L._AC_UX385_.jpg",
     });
 
     const blackShirt = await createProduct({
-      name: "Black Shirt",
+      name: "Grey Noke Shirt",
       price: "15.00",
-      description: "A black shirt",
+      description: "Just do it? How about no.",
       catId: "3",
       inventory: "20",
-      photo: "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/408964/item/goods_69_408964.jpg?width=2000"
+      photo: "https://i.ebayimg.com/images/g/Lm0AAOSwnH1WYSFJ/s-l1600.jpg",
     });
 
     const purpleHat = await createProduct({
@@ -111,25 +114,28 @@ async function createInitialProducts() {
       description: "A purple hat",
       catId: "1",
       inventory: "10",
-      photo: "https://cdn.shopify.com/s/files/1/0055/9254/7443/products/0acf553b-d7c2-44fc-bf13-b026f86fffb6.5d133a7e459b95026a8f3a575593c11d_1024x1024.jpeg?v=1584657753"
+      photo:
+        "https://cdn.shopify.com/s/files/1/0055/9254/7443/products/0acf553b-d7c2-44fc-bf13-b026f86fffb6.5d133a7e459b95026a8f3a575593c11d_1024x1024.jpeg?v=1584657753",
     });
 
     const orangeShoes = await createProduct({
-      name: "Orange Shoes",
+      name: "Anatidaephobia Poster",
       price: "40.00",
-      description: "A pair of orange shoes",
+      description: "Maybe there's one behind you....right now",
       catId: "4",
       inventory: "5",
-      photo: "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy/4d48822742e041dfbd42aafa00a85217_9366/Dame_6_Shoes_Orange_FU6808_01_standard.jpg"
+      photo:
+        "https://rlv.zcache.com/duck_shiba_inu_dog_anatidaephobia_photo_funny_doge_poster-rc9f444cac8f94149aa82137ca6a68243_wva_8byvr_704.jpg",
     });
 
     const greenShirt = await createProduct({
-      name: "Green Shirt",
+      name: "Wumbology Bag",
       price: "7.50",
-      description: "A green shirt",
+      description: "You know, Wumbology",
       catId: "3",
       inventory: "100",
-      photo: "https://cdn.childrensalon.com/media/catalog/product/cache/0/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/g/u/gucci-green-cotton-logo-t-shirt-307519-51083c57c5ee5de46aeb01bf3e46e92a27a8e9e6.jpg"
+      photo:
+        "https://images-na.ssl-images-amazon.com/images/I/6136FUTubnL._AC_SL1200_.jpg",
     });
 
     console.log("Done creating products");
@@ -179,13 +185,40 @@ async function createInitialUsers() {
       username: "adminTest",
       password: "ihavethecon",
       name: "A. D. Min",
-      admin: true
+      admin: true,
     });
 
     console.log("Done creating Users");
   } catch (error) {
     console.log("Problem with creating users");
     throw error;
+  }
+}
+
+async function createInitialReviews() {
+  try {
+    console.log("Creating initial reviews");
+    const hatReview = await createReview({
+      productId: "1",
+      usersId: "1",
+      report: "Prettiest hat you'll ever see, I'm buying 100 more!",
+    });
+    console.log(hatReview);
+    const keychainReview = await createReview({
+      productId: "1",
+      usersId: "2",
+      report: "Very nice keychain...",
+    });
+    console.log(keychainReview);
+    const shirtReview = await createReview({
+      productId: "1",
+      usersId: "3",
+      report: "Super comfy shirt.",
+    });
+    console.log(shirtReview);
+    console.log("Done creating reviews.");
+  } catch (error) {
+    console.log("Problem creating reviews...");
   }
 }
 
@@ -199,6 +232,7 @@ async function rebuildDB() {
     await createInitialCategories();
     await createInitialProducts();
     await createInitialUsers();
+    await createInitialReviews();
   } catch (error) {
     console.log("Error during rebuildDB");
     throw error;
