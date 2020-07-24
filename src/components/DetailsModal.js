@@ -22,7 +22,7 @@ const DetailsModal = ({ show, onHide, name, price, description, photo }) => {
         <img src={`${photo}`} className="details-photo" />
         <p className="price">Price: ${price}</p>
         <p className="descriptHead">Product Description:</p>
-        <p className="description">{description}</p>
+        <p className="description">${description}</p>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={onHide}>Cancel</Button>
