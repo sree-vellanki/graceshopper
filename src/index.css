@@ -10,24 +10,28 @@ F5CB5C - MAISE CRAYOLA
 */
 
 body {
-    background-color: #242423;
-    color: #E8EDDF;
+  background-color: #242423;
+}
+
+h1,
+.item {
+  color: #e8eddf;
 }
 
 img {
-    max-width: 300px;
-    height: 300px;
+  max-width: 300px;
+  height: 300px;
 }
 
 .items-list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .item {
-    padding: 8px;
-    border: solid 1px black;
-    margin: 8px;
+  padding: 8px;
+  border: solid 1px black;
+  margin: 8px;
 }
