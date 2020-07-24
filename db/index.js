@@ -427,6 +427,55 @@ async function updateProductInCart(cartId, quantity) {
   }
 }
 
+//Reviews related functions
+
+async function getAllReviews() {
+  try {
+    const { rows } = await client.query(
+      `SELECT *
+         FROM reviews;
+            `
+    );
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+}
+async function getReviewsByProduct(productId) {
+  try {
+    const { rows: products } = await client.query(
+      `
+            SELECT *
+            FROM products
+            JOIN reviews
+            ON products.id=reviews."productId"
+            WHERE "productId" = $1
+            `,
+      [productId]
+    );
+    return products;
+  } catch (error) {
+    throw error;
+  }
+}
+async function createReview({ productId, usersId, report }) {
+  try {
+    const {
+      rows: [review],
+    } = await client.query(
+      `INSERT INTO reviews("productId", "usersId", report)
+       VALUES($1, $2, $3)
+       RETURNING *;
+      `,
+      [productId, usersId, report]
+    );
+    console.log("hi, im working");
+    return review;
+  } catch (error) {
+    throw error;
+  }
+}
+
 //Linking Functions
 
 async function addProductToCategory(productId, categoryList) {
@@ -463,4 +512,7 @@ module.exports = {
   removeProductFromCart,
   addProductToCart,
   updateProductInCart,
+  getAllReviews,
+  getReviewsByProduct,
+  createReview,
 };
