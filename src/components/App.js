@@ -12,20 +12,18 @@ const App = () => {
 
   return (
     <div className="App">
-       <header>
+      <header>
         <TopNavigation />
-         <Search
-            search={search}
-            setSearch={setSearch}
-            category={category}
-            setCategory={setCategory}
+        <Search
+          search={search}
+          setSearch={setSearch}
+          category={category}
+          setCategory={setCategory}
         />
       </header>
-     
-      TEST:
-      <body>
+      <main>
         <ProductsList search={search} category={category} />
-      </body>
+      </main>
       <footer>
         <BottomNavigation />
       </footer>
