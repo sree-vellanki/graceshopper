@@ -4,10 +4,11 @@ import axios from "axios";
 
 import "./TopNavigation.css";
 
+import CartButton from "./Cart"
+
 const TopNavigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [navigation, setNavigation] = useState("");
-  const [login, setLogin] = useState(false);
   const [username, setUsername] = ("");
   const [password, setPassword] = ("");
 
@@ -37,6 +38,7 @@ const TopNavigation = () => {
         centered
         show={isOpen}
         onHide={hideModal}
+        className="log-reg-modal"
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
@@ -44,7 +46,7 @@ const TopNavigation = () => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <Tabs defaultActiveKey="login">
+        <Tabs defaultActiveKey="login" className="tabs">
           <Tab eventKey="login" title="Log In">
             <Form>
               <Form.Group controlId="formLoginUsername" value={username}>
@@ -88,15 +90,9 @@ const TopNavigation = () => {
   return (
     <div className="top-nav">
       <h1>Merch Madness</h1>
-      <ul>
-        <li>
-          <Button>cart</Button>
-        </li>
-        <li>
           <Button onClick={showModal}>login/register</Button>
-        </li>
-      </ul>
-      <LoginRegisterModal show={isOpen} onHide={hideModal} />
+          <LoginRegisterModal show={isOpen} onHide={hideModal} />
+          <CartButton />
     </div>
   );
 };

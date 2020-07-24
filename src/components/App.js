@@ -20,7 +20,7 @@ const App = () => {
           category={category}
           setCategory={setCategory}
         />
-      </header>
+     </header>
       <main>
         <ProductsList search={search} category={category} />
       </main>
