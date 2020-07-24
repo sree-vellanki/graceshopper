@@ -12,21 +12,38 @@ const CartButton = () => {
     };
 
     const CartModal = () => {
+        let LocalCart = JSON.parse(localStorage.getItem("localCart"));
+
+        const LineItem = ({name, price}) => {
+            return (
+                <tr>
+                    <td>{name}</td>
+                    <td>1</td>
+                    <td>{price}</td>
+                </tr>
+            )
+        }
+
         return (
-            <Modal size="sm" aria-labelledby="contained-modal-title-vcenter" centered show={isOpen} onHide={hideModal} className="log-reg-modal">
+            <Modal size="lg" aria-labelledby="contained-modal-title-vcenter" centered show={isOpen} onHide={hideModal} className="log-reg-modal">
                 <Table striped bordered hover variant="dark">
                     <thead>
                         <tr>
                             <th>Product</th>
                             <th>Quantity</th>
                             <th>Price</th>
-                            <th>Total Price</th>
                         </tr>
                     </thead>
                     <tbody>
-                        
+                        {LocalCart.map((product) => (
+                            <LineItem key={product.id} {...product} />
+                        ))}
                     </tbody>
                 </Table>
+                <Modal.Footer>
+                    <Button onClick={hideModal}>Cancel</Button>
+                    <Button>Checkout</Button>
+                </Modal.Footer>
             </Modal>
         )
     }

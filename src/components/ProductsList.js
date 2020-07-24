@@ -9,7 +9,7 @@ const ProductsList = ({ search, category }) => {
   useEffect(() => {
     axios.get("/api/products").then((response) => {
       const list = response.data.products;
-      console.log(response.data);
+      // console.log(response.data);
 
       setList(list);
     });

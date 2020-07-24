@@ -456,7 +456,7 @@ module.exports = {
   getUserByUsername,
   getProductsByCategory, 
   updateUser,
-  getProductsByCategory,
+  getProductById,
   updateProduct,
   addProductToCategory,
   getUsersCart,

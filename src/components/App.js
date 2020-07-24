@@ -23,9 +23,9 @@ const App = () => {
       </header>
      
       TEST:
-      <body>
+      <div>
         <ProductsList search={search} category={category} />
-      </body>
+      </div>
       <footer>
         <BottomNavigation />
       </footer>

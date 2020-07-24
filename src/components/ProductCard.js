@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from "react";
 import {Card, Button, Modal} from "react-bootstrap";
-import Axios from "axios";
+import axios from "axios";
 
 import "./ProductCard.css"
 
+let localCart = [];
+
 const ProductCard = ({
+    id,
     name,
     price,
     description,
@@ -53,17 +56,25 @@ const ProductCard = ({
       )
     }
 
-    // const AddedProduct = () => {
-    //     return (
-    //         <tr>
-    //             <td>{name}</td>
-    //             <td>{i++}</td>
-    //             <td>{price}</td>
-    //         </tr>
-    //     )
-    // }
+    //currently not working because user needs to be logged in
+    const addToCartRemote = () => {
+        axios.post("/api/products/addToCart", {id, price}).then((response) => {
+            console.log(response.data.cartedProduct)
+        })
+    }
 
-    // onClick={AddedProduct.appendTo({CartModal})}
+    const addToCartLocal = () => {
+        axios.post("/api/products/addToCartLocal", {id}).then((res) => {
+            const addedProduct = res.data.cartedProduct;
+            localCart.push(addedProduct);
+
+            localStorage.setItem("localCart", JSON.stringify(localCart));
+
+            console.log(localCart)
+        });
+
+        // localStorage.setItem("localCart", JSON.stringify(localCart));
+    };
 
     return (
         <>
@@ -73,7 +84,7 @@ const ProductCard = ({
                     <Card.Title>{name}</Card.Title>
                     <p>{price}</p>
                     <Button onClick={showModal}>View more..</Button>
-                    <Button>add to cart</Button>
+                    <Button onClick={addToCartLocal}>add to cart</Button>
                 </Card.Body>
             </Card>
             <DetailsModal show={isOpen} onHide={hideModal} />
